@@ -3,7 +3,7 @@ NixOS configuration for Raspberry Pi used in burn-in.
 
 
 ## Installation
-Download the latest `nixOS` `aarch64` release from [1]. Note that this is
+Download the latest `NixOS` `aarch64` release from [1]. Note that this is
 officially termed as 'unstable', but should be sufficient in our case. This
 branch can be used as a rolling release.
 
