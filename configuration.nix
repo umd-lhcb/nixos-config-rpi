@@ -91,11 +91,11 @@
 
     enableCompletion = true;
 
-    autosuggestions.enable = true;
+    #autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
 
     interactiveShellInit = ''
-      ZSH_THEME="af-magic"
+      ZSH_THEME="candy"
       EDITOR=vi
     '';
 
