@@ -14,7 +14,6 @@
 
       # System config
       mkpasswd
-      nix-zsh-completions
 
       # Editor
       vim 
@@ -85,29 +84,9 @@
   # Program config #
   ##################
 
-  # zsh
-  programs.zsh = {
-    enable = true;
-
-    enableCompletion = true;
-
-    #autosuggestions.enable = true;
-    syntaxHighlighting.enable = true;
-
-    interactiveShellInit = ''
-      ZSH_THEME="candy"
-      EDITOR=vi
-
-      # Search history with Ctrl-p/n
-      bindkey "^P" up-line-or-search
-      bindkey "^N" down-line-or-search
-    '';
-
-    ohMyZsh = {
-      enable = true;
-      plugins = [ "git" "sudo" ];
-    };
-  };
+  imports = [
+    programs/zsh/default.nix
+  ];
 
 
   ###################
