@@ -12,6 +12,9 @@
       gnugrep
       gnused
 
+      # System config
+      mkpasswd
+
       # Shell
       bash
       zsh
@@ -93,11 +96,16 @@
   # Fully control all user settings declaratively
   # i.e. "passwd" will be non-effective
   users.mutableUsers = false;
+
+  users.users.root = {
+    hashedPassword = "$6$ufQLBP4rG53YTioa$ZPSMcw9NZsh8u1rOqnb5X6PdVbIfK6z/eqtOHx3XAVXD9onmPFUm3YpJ6.u81pXGxjBfOeoiiahqNy9Q2UdSY1";
+  };
   
   users.users.lhcb = {
     isNormalUser = true;
     home = "/home/lhcb";
     description = "UMD LHCb group user";
     extraGroups = [ "wheel" "gpio" ];
+    hashedPassword = "$6$YbrmEXwgx$iIwwI9WcKKOaVP2nWhqzGqTDSQzmDfhiTUPGItT2eWM61Kjd2zgHB.6r.ATDyiHpMYpsmr3DMU1FG1yt1LILM.";
   };
 }
