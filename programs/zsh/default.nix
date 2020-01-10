@@ -23,10 +23,10 @@
       bindkey "^K" forward-word
 
       # Use the vi navigation keys besides cursor keys in menu completion
-      bindkey -M menuselect "h" vi-backward-char        # left
-      bindkey -M menuselect "k" vi-up-line-or-history   # up
-      bindkey -M menuselect "l" vi-forward-char         # right
-      bindkey -M menuselect "j" vi-down-line-or-history # bottom
+      bindkey -M menuselect 'h' vi-backward-char        # left
+      bindkey -M menuselect 'k' vi-up-line-or-history   # up
+      bindkey -M menuselect 'l' vi-forward-char         # right
+      bindkey -M menuselect 'j' vi-down-line-or-history # bottom
 
       # fzf history integration
       source ${./fzf-history.zsh}
