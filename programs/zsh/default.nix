@@ -23,6 +23,8 @@
       bindkey "^K" forward-word
 
       # Use the vi navigation keys besides cursor keys in menu completion
+      zstyle ':completion:*' menu select
+      zmodload zsh/complist
       bindkey -M menuselect 'h' vi-backward-char        # left
       bindkey -M menuselect 'k' vi-up-line-or-history   # up
       bindkey -M menuselect 'l' vi-forward-char         # right
