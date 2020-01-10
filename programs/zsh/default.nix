@@ -19,7 +19,7 @@
 
       # Command line navigation
       bindkey '^\' edit-command-line
-      bindkey "^J" backard-word
+      bindkey "^J" backward-word
       bindkey "^K" forward-word
 
       # Use the vi navigation keys besides cursor keys in menu completion
