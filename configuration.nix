@@ -97,6 +97,10 @@
     interactiveShellInit = ''
       ZSH_THEME="candy"
       EDITOR=vi
+
+      # Search history with Ctrl-p/n
+      bindkey "^P" up-line-or-search
+      bindkey "^N" down-line-or-search
     '';
 
     ohMyZsh = {
