@@ -14,11 +14,6 @@
 
       # System config
       mkpasswd
-
-      # Shell
-      bash
-      zsh
-      zsh-completions
       nix-zsh-completions
 
       # Editor
@@ -29,7 +24,6 @@
       tig
       fzf
       ripgrep
-      fzf
       tmux
       cmake
       ctags
@@ -89,6 +83,21 @@
   '';
 
 
+  ##################
+  # Program config #
+  ##################
+
+  # zsh
+  programs.zsh.enable = true;
+  programs.zsh.enableCompletion = true;
+
+  # Oh-My-Zsh
+  programs.zsh.ohMyZsh = {
+    enable = true;
+    plugins = [ "git" "sudo" ];
+  };
+
+
   ###################
   # User management #
   ###################
@@ -99,6 +108,7 @@
 
   users.users.root = {
     hashedPassword = "$6$ufQLBP4rG53YTioa$ZPSMcw9NZsh8u1rOqnb5X6PdVbIfK6z/eqtOHx3XAVXD9onmPFUm3YpJ6.u81pXGxjBfOeoiiahqNy9Q2UdSY1";
+    shell = pkgs.zsh;
   };
   
   users.users.lhcb = {
@@ -107,5 +117,6 @@
     description = "UMD LHCb group user";
     extraGroups = [ "wheel" "gpio" ];
     hashedPassword = "$6$YbrmEXwgx$iIwwI9WcKKOaVP2nWhqzGqTDSQzmDfhiTUPGItT2eWM61Kjd2zgHB.6r.ATDyiHpMYpsmr3DMU1FG1yt1LILM.";
+    shell = pkgs.zsh;
   };
 }
