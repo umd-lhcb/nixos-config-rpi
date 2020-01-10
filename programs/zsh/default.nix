@@ -18,7 +18,7 @@
       bindkey "^N" down-line-or-search
 
       # Command line navigation
-      bindkey "^\" edit-command-line
+      bindkey '^\' edit-command-line
       bindkey "^J" backard-word
       bindkey "^K" forward-word
 
