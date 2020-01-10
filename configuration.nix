@@ -78,9 +78,7 @@
   services.openssh.permitRootLogin = "yes";
 
   # sudo configuration
-  security.sudo.configFile = ''
-    %wheel ALL=(ALL) NOPASSWD: ALL
-  '';
+  security.sudo.wheelNeedsPassword = false;
 
 
   ##################
@@ -88,16 +86,23 @@
   ##################
 
   # zsh
-  programs.zsh.enable = true;
-  programs.zsh.enableCompletion = true;
-  programs.zsh.interactiveShellInit = ''
-    ZSH_THEME="af-magic"
-  '';
-
-  # Oh-My-Zsh
-  programs.zsh.ohMyZsh = {
+  programs.zsh = {
     enable = true;
-    plugins = [ "git" "sudo" ];
+
+    enableCompletion = true;
+
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+
+    interactiveShellInit = ''
+      ZSH_THEME="af-magic"
+      EDITOR=vi
+    '';
+
+    ohMyZsh = {
+      enable = true;
+      plugins = [ "git" "sudo" ];
+    };
   };
 
 
