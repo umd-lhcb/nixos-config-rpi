@@ -90,6 +90,9 @@
   # zsh
   programs.zsh.enable = true;
   programs.zsh.enableCompletion = true;
+  programs.zsh.interactiveShellInit = ''
+    ZSH_THEME="af-magic"
+  '';
 
   # Oh-My-Zsh
   programs.zsh.ohMyZsh = {
