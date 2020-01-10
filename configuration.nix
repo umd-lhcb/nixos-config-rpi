@@ -11,7 +11,6 @@
       gnumake
       gnugrep
       gnused
-      inetutils
 
       # Shell
       bash
@@ -79,6 +78,7 @@
 
   # SSH configuration
   services.openssh.enable = true;
+  services.openssh.permitRootLogin = "yes";
 
   # sudo configuration
   security.sudo.configFile = ''
@@ -90,9 +90,14 @@
   # User management #
   ###################
 
-  users.extraUsers.lhcb = {
+  # Fully control all user settings declaratively
+  # i.e. "passwd" will be non-effective
+  users.mutableUsers = false;
+  
+  users.users.lhcb = {
     isNormalUser = true;
     home = "/home/lhcb";
-    extragroups = [ "wheel" "gpio" ];
+    description = "UMD LHCb group user";
+    extraGroups = [ "wheel" "gpio" ];
   };
 }
