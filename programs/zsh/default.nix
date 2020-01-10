@@ -15,6 +15,9 @@
       # Search history with Ctrl-P/N
       bindkey "^P" up-line-or-search
       bindkey "^N" down-line-or-search
+
+      # fzf history integration
+      source ${./fzf-history.zsh}
     '';
 
     ohMyZsh = {
