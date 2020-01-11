@@ -5,9 +5,6 @@
     enable = true;
 
     extraTmuxConf = ''
-      # Sidebar integration
-      run-shell ${pkgs.tmuxPlugins.sidebar}/share/tmux-plugins/sidebar/sidebar.tmux
-
       # History
       set -g history-limit 2000
 
