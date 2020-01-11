@@ -42,6 +42,9 @@
       htop
     ];
 
+  environment.interactiveShellInit = ''
+    alias df='df -hT'
+  '';
 
   #################################
   # NixOS config for Raspberry Pi #
