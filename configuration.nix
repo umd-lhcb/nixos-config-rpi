@@ -25,9 +25,6 @@
       # System config
       mkpasswd
 
-      # Editor
-      vim
-
       # Dev tools
       git
       tig
@@ -46,6 +43,7 @@
   environment.interactiveShellInit = ''
     alias df='df -hT'
   '';
+
 
   #################################
   # NixOS config for Raspberry Pi #
@@ -97,12 +95,12 @@
   ###################
 
   # Fully control all user settings declaratively
-  # i.e. "passwd" will be non-effective
+  # i.e. "passwd" command will be non-effective
   users.mutableUsers = false;
 
   users.users.root = {
-    hashedPassword = "$6$ufQLBP4rG53YTioa$ZPSMcw9NZsh8u1rOqnb5X6PdVbIfK6z/eqtOHx3XAVXD9onmPFUm3YpJ6.u81pXGxjBfOeoiiahqNy9Q2UdSY1";
     shell = pkgs.zsh;
+    hashedPassword = "$6$ufQLBP4rG53YTioa$ZPSMcw9NZsh8u1rOqnb5X6PdVbIfK6z/eqtOHx3XAVXD9onmPFUm3YpJ6.u81pXGxjBfOeoiiahqNy9Q2UdSY1";
   };
 
   users.users.lhcb = {
@@ -110,8 +108,8 @@
     home = "/home/lhcb";
     description = "UMD LHCb group user";
     extraGroups = [ "wheel" "gpio" ];
-    hashedPassword = "$6$YbrmEXwgx$iIwwI9WcKKOaVP2nWhqzGqTDSQzmDfhiTUPGItT2eWM61Kjd2zgHB.6r.ATDyiHpMYpsmr3DMU1FG1yt1LILM.";
     shell = pkgs.zsh;
+    hashedPassword = "$6$YbrmEXwgx$iIwwI9WcKKOaVP2nWhqzGqTDSQzmDfhiTUPGItT2eWM61Kjd2zgHB.6r.ATDyiHpMYpsmr3DMU1FG1yt1LILM.";
     openssh.authorizedKeys.keys = [
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1s0sy5xORVQZcM7Yg1UcxqxGOazY41kci43OV0aqX7owjrxJKhezeOU0uehcvr2uaJykF5wRphaMjiY5tmaVyh35RKZ7tu5B7bx0FOjgATrUFAcBgKqzVMeCSmvmSUNK02HYrP+SOWbdgYECkyF+7PVxZoUefPnpBfGiqunfBWD5YrJMJPToFRqRW7Lcl+/6wIZQOAvPq8lvhfG89r9SvdiEX8umpYJKRgIl9k5wOsimTFJ5wLfq39sjECIzGCcbVLkiPzkOPLWRRgamICbiN4f0HF8kqdDU0mD1WZ5wHM72P68WKpHhMn9l+NEsGYik0fkW+RvyQmnXrpCkMXg3d"
     ];
