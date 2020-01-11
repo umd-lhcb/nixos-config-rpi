@@ -10,7 +10,8 @@
     ./modules
 
     # Program config
-    ./programs/zsh/default.nix
+    ./programs/zsh
+    ./programs/tmux
   ];
 
   environment.systemPackages = with pkgs;
@@ -32,7 +33,6 @@
       tig
       fzf
       ripgrep
-      tmux
       cmake
       ctags
 
