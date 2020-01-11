@@ -14,7 +14,9 @@ let
 in
 
 {
-  disabledModules = [ "programs/zsh" ];
+  disabledModules = [ 
+    "programs/zsh/zsh.nix" 
+  ];
   options = {
     programs.zsh.enable = mkOption {
       type = types.bool;
@@ -88,12 +90,6 @@ in
       default = false;
       description = "Enable fzf keybinding for Ctrl-r history search.";
     };
-
-    programs.zsh.enableSyntaxHighlighting = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Enable zsh-syntax-highlighting.";
-    };
   };
 
   config = mkIf cfg.enable {
@@ -101,8 +97,7 @@ in
     environment.systemPackages =
       [ # Include zsh package
         pkgs.zsh
-      ] ++ optional cfg.enableCompletion pkgs.nix-zsh-completions
-        ++ optional cfg.enableSyntaxHighlighting pkgs.zsh-syntax-highlighting;
+      ] ++ optional cfg.enableCompletion pkgs.nix-zsh-completions;
 
     environment.pathsToLink = [ "/share/zsh" ];
 
@@ -141,7 +136,6 @@ in
       __ETC_ZPROFILE_SOURCED=1
 
       ${concatStringsSep "\n" zshVariables}
-      ${config.system.build.setAliases.text}
 
       ${cfg.loginShellInit}
 
