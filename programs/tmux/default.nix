@@ -4,7 +4,7 @@
   programs.tmux = {
     enable = true;
 
-    extraTmuxConfig = ''
+    extraTmuxConf = ''
       # Sidebar integration
       run-shell ${pkgs.tmuxPlugins.sidebar}/share/tmux-plugins/sidebar/sidebar.tmux
 
