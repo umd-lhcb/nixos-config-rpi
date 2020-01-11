@@ -175,7 +175,7 @@ in
       ${optionalString cfg.enableCompletion "autoload -U compinit && compinit"}
       ${optionalString cfg.enableBashCompletion "autoload -U bashcompinit && bashcompinit"}
 
-      ${optionalString cfg.enableSyntaxHighlighting
+      ${optionalString cfg.syntaxHighlighting.enable
         "source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
       }
 
