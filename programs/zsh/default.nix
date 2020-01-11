@@ -5,7 +5,7 @@
     enable = true;
     enableCompletion = true;
     enableFzfHistory = true;
-    enableFzfCompletion = true;
+    #enableFzfCompletion = true;
 
     #autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
