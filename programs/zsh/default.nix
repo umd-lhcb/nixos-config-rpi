@@ -17,7 +17,7 @@ in
     variables = {
       ZSH_THEME = "candy";
       EDITOR = "vi";
-    }
+    };
 
     interactiveShellInit = ''
       # Search history with Ctrl-P/N
