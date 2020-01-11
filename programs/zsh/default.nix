@@ -14,13 +14,13 @@
       EDITOR=vi
 
       # Search history with Ctrl-P/N
-      bindkey "^P" up-line-or-search
-      bindkey "^N" down-line-or-search
+      bindkey '^P' up-line-or-search
+      bindkey '^N' down-line-or-search
 
       # Command line navigation
       bindkey '^\' edit-command-line
-      bindkey "^J" backward-word
-      bindkey "^K" forward-word
+      bindkey '^J' backward-word
+      bindkey '^K' forward-word
 
       # Use the vi navigation keys besides cursor keys in menu completion
       zstyle ':completion:*' menu select
