@@ -106,7 +106,6 @@ in
 
     environment.pathsToLink = [ "/share/zsh" ];
 
-    environment.loginShell = "zsh -l";
     environment.variables.SHELL = "${pkgs.zsh}/bin/zsh";
 
     environment.etc."zshenv".text = ''
