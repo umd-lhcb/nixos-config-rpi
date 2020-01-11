@@ -8,6 +8,7 @@ in
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    enableFzfHistory = true;
 
     #autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
@@ -32,9 +33,6 @@ in
       bindkey -M menuselect 'k' vi-up-line-or-history   # up
       bindkey -M menuselect 'l' vi-forward-char         # right
       bindkey -M menuselect 'j' vi-down-line-or-history # bottom
-
-      # fzf history integration
-      source ${./fzf-history.zsh}
     '';
 
     ohMyZsh = {
