@@ -5,7 +5,11 @@
   #####################
 
   imports = [
-    ./modules  # Extra modules.
+    # Extra modules
+    ./modules
+
+    # Program config
+    ./programs/zsh/default.nix
   ];
 
   environment.systemPackages = with pkgs;
@@ -82,15 +86,6 @@
 
   # sudo configuration
   security.sudo.wheelNeedsPassword = false;
-
-
-  ##################
-  # Program config #
-  ##################
-
-  imports = [
-    programs/zsh/default.nix
-  ];
 
 
   ###################
