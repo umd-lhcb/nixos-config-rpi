@@ -1,9 +1,12 @@
 { config, pkgs, lib, ... }:
 
+let
+  fzfHistory = ./fzf-history.zsh;
+in
+
 {
   programs.zsh = {
     enable = true;
-
     enableCompletion = true;
 
     #autosuggestions.enable = true;
