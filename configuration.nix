@@ -4,6 +4,10 @@
   # nix global config #
   #####################
 
+  imports = [
+    ./modules  # Extra modules.
+  ];
+
   environment.systemPackages = with pkgs;
     [
       # GNU userland
@@ -16,8 +20,8 @@
       mkpasswd
 
       # Editor
-      vim 
-      
+      vim
+
       # Dev tools
       git
       tig
@@ -43,7 +47,7 @@
   boot.loader.grub.enable = false;
   # Enables the generation of /boot/extlinux/extlinux.conf
   boot.loader.generic-extlinux-compatible.enable = true;
- 
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.initrd.availableKernelModules = [ "usbhid" ];
 
@@ -53,7 +57,7 @@
   # you should either disable this parameter or increase to at least 64M if you
   # want the USB ports to work.
   boot.kernelParams = ["cma=32M"];
-    
+
   # File systems configuration for using the installer's partition layout
   fileSystems = {
     "/" = {
@@ -69,7 +73,7 @@
 
   networking.hostName = "LabPi";
   networking.wireless.enable = false;
-  
+
   time.timeZone = "America/New_York";
 
   # SSH configuration
@@ -101,7 +105,7 @@
     hashedPassword = "$6$ufQLBP4rG53YTioa$ZPSMcw9NZsh8u1rOqnb5X6PdVbIfK6z/eqtOHx3XAVXD9onmPFUm3YpJ6.u81pXGxjBfOeoiiahqNy9Q2UdSY1";
     shell = pkgs.zsh;
   };
-  
+
   users.users.lhcb = {
     isNormalUser = true;
     home = "/home/lhcb";
