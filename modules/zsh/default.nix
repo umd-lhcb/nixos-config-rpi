@@ -14,9 +14,10 @@ let
 in
 
 {
-  disabledModules = [ 
-    "programs/zsh/zsh.nix" 
+  disabledModules = [
+    "programs/zsh/zsh.nix"
   ];
+
   options = {
     programs.zsh.enable = mkOption {
       type = types.bool;
