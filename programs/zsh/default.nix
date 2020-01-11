@@ -14,6 +14,9 @@
       ZSH_THEME="candy"
       EDITOR="vi"
 
+      # Command auto-correction
+      setopt correct
+
       # Search history with Ctrl-P/N
       bindkey '^P' up-line-or-search
       bindkey '^N' down-line-or-search
