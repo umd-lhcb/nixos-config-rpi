@@ -26,7 +26,7 @@
     gnused
 
     # Editor
-    vim-configured
+    neovim-configured
 
     # System config
     mkpasswd

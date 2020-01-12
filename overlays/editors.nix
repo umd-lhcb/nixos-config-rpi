@@ -1,23 +1,27 @@
 self: super: 
 
 let
-  vimrcConfig = {
-    customRC = ''
-      set mouse=a
-    '';
+  customRC = ''
+    set mouse=a
+  '';
 
-    plug.plugins = with super.vimPlugins; [
-      vim-nix
-      vim-airline
-      delimitMate
-    ];
-  };
+  plugins = with super.vimPlugins; [
+    vim-nix
+    vim-airline
+    delimitMate
+  ];
 in
 
 {
   super.vim.ftNix = false;
   vim-configured = super.vim_configurable.customize {
     name = "vim";
-    inherit vimrcConfig;
+    vimrcConfig = { inherit customRC; plug.plugins = plugins; };
+  };
+
+  neovim-configured = super.neovim.override {
+    configure = { inherit customRC; plug.plugins = plugins; };
+    viAlias = true;
+    vimAlias = true;
   };
 }
