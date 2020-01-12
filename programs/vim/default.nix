@@ -8,7 +8,7 @@
         vim-nix
         vim-airline
         delimitMate
-      ]
-    }
-  }
+      ];
+    };
+  };
 }
