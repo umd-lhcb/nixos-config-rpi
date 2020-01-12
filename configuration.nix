@@ -5,6 +5,10 @@
   # nix global config #
   #####################
 
+  nixpkgs.overlays = [
+    (import ./overlays/editors.nix)
+  ];
+
   imports = [
     # Extra modules
     ./modules
@@ -12,37 +16,35 @@
     # Program config
     ./programs/zsh
     ./programs/tmux
-    ./programs/vim
   ];
 
-  environment.systemPackages = with pkgs;
-    [
-      # GNU userland
-      coreutils
-      gnumake
-      gnugrep
-      gnused
+  environment.systemPackages = with pkgs; [
+    # GNU userland
+    coreutils
+    gnumake
+    gnugrep
+    gnused
 
-      # Editor
-      vim-with-plugins
+    # Editor
+    vim-configured
 
-      # System config
-      mkpasswd
+    # System config
+    mkpasswd
 
-      # Dev tools
-      git
-      tig
-      fzf
-      ripgrep
-      cmake
-      ctags
+    # Dev tools
+    git
+    tig
+    fzf
+    ripgrep
+    cmake
+    ctags
 
-      # Utilities
-      tree
-      findutils
-      pstree
-      htop
-    ];
+    # Utilities
+    tree
+    findutils
+    pstree
+    htop
+  ];
 
   environment.interactiveShellInit = ''
     alias df='df -hT'
