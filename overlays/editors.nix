@@ -24,4 +24,5 @@ in
     viAlias = true;
     vimAlias = true;
   };
+  neovim-vimdiff = super.writeScriptBin "vimdiff" "exec ${self.neovim-configured}/bin/nvim -d \"$@\"";
 }

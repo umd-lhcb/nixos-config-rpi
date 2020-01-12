@@ -27,6 +27,7 @@
 
     # Editor
     neovim-configured
+    neovim-vimdiff
 
     # System config
     mkpasswd
