@@ -23,6 +23,9 @@
       gnugrep
       gnused
 
+      # Editor
+      vim-with-plugins
+
       # System config
       mkpasswd
 
