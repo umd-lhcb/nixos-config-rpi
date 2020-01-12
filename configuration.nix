@@ -12,6 +12,7 @@
     # Program config
     ./programs/zsh
     ./programs/tmux
+    ./programs/vim
   ];
 
   environment.systemPackages = with pkgs;
@@ -24,9 +25,6 @@
 
       # System config
       mkpasswd
-
-      # Editor
-      vim
 
       # Dev tools
       git
@@ -86,7 +84,7 @@
 
   # SSH configuration
   services.openssh.enable = true;
-  services.openssh.permitRootLogin = "yes";
+  services.openssh.permitRootLogin = "no";
 
   # sudo configuration
   security.sudo.wheelNeedsPassword = false;
