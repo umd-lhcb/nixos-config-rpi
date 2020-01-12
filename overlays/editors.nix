@@ -30,6 +30,7 @@ let
     vim-nix
     vim-airline
     delimitMate
+    supertab
   ];
 in
 
