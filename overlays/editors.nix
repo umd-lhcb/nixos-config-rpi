@@ -2,7 +2,23 @@ self: super:
 
 let
   customRC = ''
-    set mouse=a
+    " This makes mouse selection copy work
+    set mouse=i
+
+    " Always show line numbers
+    set number
+
+    " Remove trailing whitespace when writing a buffer, but not for diff files
+    func! RemoveTrailingWhitespace()
+        if &ft != "diff"
+            let b:curcol = col(".")
+            let b:curline = line(".")
+            silent! %s/\s\+$//
+            silent! %s/\(\s*\n\)\+\%$//
+            call cursor(b:curline, b:curcol)
+        endif
+    endfunc
+    autocmd BufWritePre * call RemoveTrailingWhitespace()
   '';
 
   plugins = with super.vimPlugins; [
