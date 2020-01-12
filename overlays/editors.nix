@@ -1,4 +1,4 @@
-self: super: 
+self: super:
 
 let
   customRC = ''
@@ -7,6 +7,11 @@ let
 
     " Always show line numbers
     set number
+
+    " Highlight column 81
+    set textwidth=80
+    set colorcolumn=+1
+    hi ColorColumn ctermbg=246
 
     " Remove trailing whitespace when writing a buffer, but not for diff files
     func! RemoveTrailingWhitespace()
