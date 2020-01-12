@@ -3,189 +3,131 @@
 with lib;
 
 let
-
   cfg = config.programs.vim;
-  defaultPlugins = [ pkgs.vimPlugins.sensible ];
 
-  knownSettings = {
-    background = types.enum [ "dark" "light" ];
-    backupdir = types.listOf types.str;
-    copyindent = types.bool;
-    directory = types.listOf types.str;
-    expandtab = types.bool;
-    hidden = types.bool;
-    history = types.int;
-    ignorecase = types.bool;
-    modeline = types.bool;
-    mouse = types.enum [ "n" "v" "i" "c" "h" "a" "r" ];
-    mousefocus = types.bool;
-    mousehide = types.bool;
-    mousemodel = types.enum [ "extend" "popup" "popup_setpos" ];
-    number = types.bool;
-    relativenumber = types.bool;
-    shiftwidth = types.int;
-    smartcase = types.bool;
-    tabstop = types.int;
-    undodir = types.listOf types.str;
-    undofile = types.bool;
+  text = import ../lib/write-text.nix {
+    inherit lib;
+    mkTextDerivation = name: text: pkgs.writeText "vim-options-${name}" text;
   };
 
-  vimSettingsType = types.submodule {
-    options =
-      let
-        opt = name: type: mkOption {
-          type = types.nullOr type;
-          default = null;
-          visible = false;
-        };
-      in
-        mapAttrs opt knownSettings;
-  };
-
-  setExpr = name: value:
-    let
-      v =
-        if isBool value then (if value then "" else "no") + name
-        else
-          "${name}=${
-            if isList value
-            then concatStringsSep "," value
-            else toString value
-          }";
-    in
-      optionalString (value != null) ("set " + v);
-
-  plugins =
-    let
-      vpkgs = pkgs.vimPlugins;
-      getPkg = p:
-        if isDerivation p
-        then [ p ]
-        else optional (isString p && hasAttr p vpkgs) vpkgs.${p};
-    in
-      concatMap getPkg cfg.plugins;
-
+  vimOptions = concatMapStringsSep "\n" (attr: attr.text) (attrValues cfg.vimOptions);
 in
 
 {
   options = {
-    programs.vim = {
-      enable = mkEnableOption "Vim";
+    programs.vim.enable = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Whether to configure vim.";
+    };
 
-      plugins = mkOption {
-        type = with types; listOf (either str package);
-        default = defaultPlugins;
-        example = literalExample ''[ pkgs.vimPlugins.YankRing ]'';
-        description = ''
-          List of vim plugins to install. To get a list of supported plugins run:
-          <command>nix-env -f '&lt;nixpkgs&gt;' -qaP -A vimPlugins</command>.
+    programs.vim.enableSensible = mkOption {
+      type = types.bool;
+      default = false;
+      example = true;
+      description = "Enable sensible configuration options for vim.";
+    };
 
-          </para><para>
+    programs.vim.extraKnownPlugins = mkOption {
+      type = types.attrsOf types.package;
+      default = {};
+      example = literalExample
+        ''
+        {
+          vim-jsx = pkgs.vimUtils.buildVimPluginFrom2Nix {
+            name = "vim-javascript-2016-07-29";
+            src = pkgs.fetchgit {
+              url = "git://github.com/mxw/vim-jsx";
+              rev = "261114c925ea81eeb4db1651cc1edced66d6b5d6";
+              sha256 = "17pffzwnvsimnnr4ql1qifdh4a0sqqsmcwfiqqzgglvsnzw5vpls";
+            };
+            dependencies = [];
 
-          Note: String values are deprecated, please use actual packages.
+          };
+        }
         '';
-      };
+      description = "Custom plugin declarations to add to VAM's knownPlugins.";
+    };
 
-      settings = mkOption {
-        type = vimSettingsType;
-        default = {};
-        example = literalExample ''
-          {
-            expandtab = true;
-            history = 1000;
-            background = "dark";
-          }
-        '';
-        description = ''
-          At attribute set of Vim settings. The attribute names and
-          corresponding values must be among the following supported
-          options.
+    programs.vim.plugins = mkOption {
+      type = types.listOf types.attrs;
+      default = [];
+      example = [ { names = [ "surround" "vim-nix" ]; } ];
+      description = "VAM plugin dictionaries to use for vim_configurable.";
+    };
 
-          <informaltable frame="none"><tgroup cols="1"><tbody>
-          ${concatStringsSep "\n" (
-            mapAttrsToList (n: v: ''
-              <row>
-                <entry><varname>${n}</varname></entry>
-                <entry>${v.description}</entry>
-              </row>
-            '') knownSettings
-          )}
-          </tbody></tgroup></informaltable>
+    programs.vim.package = mkOption {
+      internal = true;
+      type = types.package;
+    };
 
-          See the Vim documentation for detailed descriptions of these
-          options. Note, use <varname>extraConfig</varname> to
-          manually set any options not listed above.
-        '';
-      };
+    programs.vim.vimOptions = mkOption {
+      internal = true;
+      type = types.attrsOf (types.submodule text);
+      default = {};
+    };
 
-      extraConfig = mkOption {
-        type = types.lines;
-        default = "";
-        example = ''
-          set nocompatible
-          set nobackup
-        '';
-        description = "Custom .vimrc lines";
-      };
-
-      package = mkOption {
-        type = types.package;
-        description = "Resulting customized vim package";
-        readOnly = true;
-      };
+    programs.vim.vimConfig = mkOption {
+      type = types.lines;
+      default = "";
+      description = "Extra vimrcConfig to use for vim_configurable.";
     };
   };
 
-  config = (
-    let
-      customRC = ''
-        ${concatStringsSep "\n" (
-          filter (v: v != "") (
-          mapAttrsToList setExpr (
-          builtins.intersectAttrs knownSettings cfg.settings)))}
+  config = mkIf cfg.enable {
 
-        ${cfg.extraConfig}
-      '';
+    environment.systemPackages =
+      [ # Include vim_configurable package.
+        cfg.package
+      ];
 
-      vim = pkgs.vim_configurable.customize {
-        name = "vim";
-        vimrcConfig = {
-          inherit customRC;
+    environment.variables.EDITOR = "${cfg.package}/bin/vim";
 
-          packages.home-manager.start = plugins;
-        };
+    environment.etc."vimrc".text = ''
+      ${vimOptions}
+      ${cfg.vimConfig}
+
+      if filereadable('/etc/vimrc.local')
+        source /etc/vimrc.local
+      endif
+    '';
+
+    programs.vim.package = pkgs.vim_configurable.customize {
+      name = "vim";
+      vimrcConfig.customRC = config.environment.etc."vimrc".text;
+      vimrcConfig.vam = {
+        knownPlugins = pkgs.vimPlugins // cfg.extraKnownPlugins;
+        pluginDictionaries = cfg.plugins;
       };
-    in
-      mkIf cfg.enable {
-        assertions =
-          let
-            packagesNotFound = filter (p: isString p && (!hasAttr p pkgs.vimPlugins)) cfg.plugins;
-          in
-            [
-              {
-                assertion = packagesNotFound == [];
-                message = "Following VIM plugin not found in pkgs.vimPlugins: ${
-                  concatMapStringsSep ", " (p: ''"${p}"'') packagesNotFound
-                }";
-              }
-            ];
+    };
 
-        warnings =
-          let
-            stringPlugins = filter isString cfg.plugins;
-          in
-            optional (stringPlugins != []) ''
-              Specifying VIM plugins using strings is deprecated, found ${
-                concatMapStringsSep ", " (p: ''"${p}"'') stringPlugins
-              } as strings.
-            '';
+    programs.vim.plugins = mkIf cfg.enableSensible [
+      { names = [ "fugitive" "surround" "vim-nix" ]; }
+    ];
 
-        home.packages = [ cfg.package ];
+    programs.vim.vimOptions.sensible.text = mkIf cfg.enableSensible ''
+      set nocompatible
+      filetype plugin indent on
+      syntax on
 
-        programs.vim = {
-          package = vim;
-          plugins = defaultPlugins;
-        };
-      }
-  );
+      set et sw=2 ts=2
+      set bs=indent,start
+
+      set hlsearch
+      set incsearch
+      nnoremap // :nohlsearch<CR>
+
+      set list
+      set listchars=tab:»·,trail:·,extends:⟩,precedes:⟨
+      set fillchars+=vert:\ ,stl:\ ,stlnc:\ 
+
+      set number
+
+      set lazyredraw
+      set nowrap
+      set showcmd
+      set showmatch
+    '';
+
+  };
 }
