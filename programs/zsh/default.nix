@@ -22,8 +22,12 @@
       bindkey '^P' up-line-or-beginning-search
       bindkey '^N' down-line-or-beginning-search
 
-      # Command line navigation
+      # Edit command line
+      autoload -U edit-command-line
+      zle -N edit-command-line
       bindkey '^\' edit-command-line
+
+      # Command line navigation
       bindkey '^J' backward-word
       bindkey '^K' forward-word
 
