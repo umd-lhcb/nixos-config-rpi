@@ -76,7 +76,12 @@
   # FIXME: This doesn't work
   #boot.kernelPackages = pkgs.linuxPackages_rpi3;
 
-  boot.initrd.availableKernelModules = [ "usbhid" ];
+  boot.initrd.availableKernelModules = [
+    "usbhid"
+    "vc4"
+    "bcm2835_dma"
+    "i2c_bcm2835"
+  ];
 
   # Needed for the virtual console to work on the RPi 3, as the default of 16M
   # doesn't seem to be enough.  If X.org behaves weirdly (I only saw the
@@ -85,6 +90,9 @@
   # want the USB ports to work.
   boot.kernelParams = [
     "cma=32M"
+    "console=ttyS0,115200n8"
+    "console=ttyAMA0,115200n8"
+    "console=tty0"
     "dtoverlay=w1-gpio,pullup=1"  # For thermistors 1-wire setup
   ];
 
