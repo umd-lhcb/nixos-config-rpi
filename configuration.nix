@@ -108,7 +108,7 @@
   }];
 
   hardware.bluetooth.enable = false;
-  hardware.enableRedistributableFirmware = true;
+  hardware.enableRedistributableFirmware = false;
 
 
   ########################
