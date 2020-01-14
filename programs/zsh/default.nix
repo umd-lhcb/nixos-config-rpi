@@ -15,8 +15,12 @@
       ENABLE_CORRECTION="true"
 
       # Search history with Ctrl-P/N
-      bindkey '^P' up-line-or-search
-      bindkey '^N' down-line-or-search
+      autoload -U up-line-or-beginning-search
+      autoload -U down-line-or-beginning-search
+      zle -N up-line-or-beginning-search
+      zle -N down-line-or-beginning-search
+      bindkey '^P' up-line-or-beginning-search
+      bindkey '^N' down-line-or-beginning-search
 
       # Command line navigation
       bindkey '^\' edit-command-line
