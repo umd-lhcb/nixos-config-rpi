@@ -101,6 +101,12 @@
     };
   };
 
+  # Swap device. It's needed!
+  swapDevices = [{
+    device = "/swapfile";
+    size = 4096;
+  }];
+
   hardware.bluetooth.enable = false;
   hardware.enableRedistributableFirmware = true;
 
