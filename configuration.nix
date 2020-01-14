@@ -47,9 +47,15 @@
     htop
   ];
 
+  # Make instantiate persistent nix-shell possible.
+  #nix.extraOptions = "keep-outputs = true";
+
   environment.interactiveShellInit = ''
     export EDITOR=vi
-    alias df='df -hT'
+    alias df="df -hT";
+    alias du="du -hs";
+    alias nix-shell="nix-shell --run zsh";
+    alias nix-reg="nix-instantiate shell.nix --indirect --add-root $HOME/.gcroots/$(basename $(pwd))";
   '';
 
 
