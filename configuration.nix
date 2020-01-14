@@ -79,6 +79,11 @@
   # want the USB ports to work.
   boot.kernelParams = ["cma=32M,dtoverlay=w1-gpio,pullup=1"];
 
+  # Other rpi tunings
+  boot.loader.raspberryPi.enable = true;
+  boot.loader.raspberryPi.version = 3;
+  boot.loader.raspberryPi.uboot.enable = true;
+
   # File systems configuration for using the installer's partition layout
   fileSystems = {
     "/" = {
@@ -115,6 +120,9 @@
   # Fully control all user settings declaratively
   # i.e. "passwd" command will be non-effective
   users.mutableUsers = false;
+
+  # Extra groups
+  users.groups.gpio = {};
 
   users.users.root = {
     shell = pkgs.zsh;
