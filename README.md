@@ -3,10 +3,9 @@ NixOS configuration for Raspberry Pi used in burn-in.
 
 
 ## Installation
-Download the latest `NixOS` `aarch64` release from [1] (unofficial, currently
-the official one doesn't work with Raspberry Pi 4). Note that this is
-officially termed as 'unstable', but should be sufficient in our case. This
-branch can be used as a rolling release.
+Download the latest `NixOS` `aarch64` release from [1] (official, but
+experimental). Note that this is officially termed as 'unstable', but should be
+sufficient in our case. This branch can be used as a rolling release.
 
 Write the image to an SD card. In Linux, suppose we have a sdcard `mmcblk0`
 with 2 partitions `mmcblk0p1` and `mmcblk0p1`, then we should write to
@@ -18,4 +17,4 @@ On first boot, the rootfs will be automatically resized to use all available
 spaces of the SD card.
 
 
-[1]: https://data.lunar.computer/nixos-sd-image-20.03pre206632.b0bbacb5213-aarch64-linux.img.bz2
+[1]: https://hydra.nixos.org/job/nixos/trunk-combined/nixos.sd_image_raspberrypi4.aarch64-linux
