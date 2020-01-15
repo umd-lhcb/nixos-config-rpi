@@ -10,6 +10,9 @@
   ];
 
   imports = [
+    # rpi 4 settings
+    <nixpkgs/nixos/modules/installer/cd-dvd/sd-image-raspberrypi4.nix>
+
     # Extra modules
     ./modules
 
@@ -70,12 +73,12 @@
   boot.loader.generic-extlinux-compatible.enable = true;
 
   # Use latest main line kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
   # Use latest lts kernel
   #boot.kernelPackages = pkgs.linuxPackages;
-  # Use Linux kernel for Raspberry Pi 3 family
+  # Use Linux kernel for rpi4
   # FIXME: This doesn't work
-  #boot.kernelPackages = pkgs.linuxPackages_rpi3;
+  boot.kernelPackages = pkgs.linuxPackages_rpi4;
 
   boot.initrd.availableKernelModules = [
     "usbhid"
@@ -90,7 +93,7 @@
   # you should either disable this parameter or increase to at least 64M if you
   # want the USB ports to work.
   boot.kernelParams = [
-    "cma=32M"
+    "cma=64M"  # rpi4 default
     "console=ttyS0,115200n8"
     "console=ttyAMA0,115200n8"
     "console=tty0"
@@ -99,7 +102,7 @@
 
   # Other rpi tunings
   boot.loader.raspberryPi.enable = true;
-  boot.loader.raspberryPi.version = 3;
+  boot.loader.raspberryPi.version = 4;
   boot.loader.raspberryPi.uboot.enable = true;
 
   # File systems configuration for using the installer's partition layout
@@ -116,8 +119,13 @@
     size = 4096;
   }];
 
+  # Hardware settings
   hardware.bluetooth.enable = false;
   hardware.enableRedistributableFirmware = false;
+
+  hardware.deviceTree = {
+    base = pkgs.device-tree_rpi;
+  }
 
 
   ########################
