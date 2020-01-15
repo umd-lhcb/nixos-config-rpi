@@ -67,10 +67,14 @@
   #################################
 
   # NixOS wants to enable GRUB by default
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
+  boot.loader.grub.enable = false;
   # Enables the generation of /boot/extlinux/extlinux.conf
   #boot.loader.generic-extlinux-compatible.enable = true;
+
+  # Other rpi tunings for bootloader
+  boot.loader.raspberryPi.enable = true;
+  boot.loader.raspberryPi.version = 4;
+  #boot.loader.raspberryPi.uboot.enable = true;
 
   # Use latest main line kernel
   #boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -99,11 +103,6 @@
     "console=tty0"
     "dtoverlay=w1-gpio,pullup=1"  # For thermistors 1-wire setup
   ];
-
-  # Other rpi tunings
-  #boot.loader.raspberryPi.enable = true;
-  #boot.loader.raspberryPi.version = 4;
-  #boot.loader.raspberryPi.uboot.enable = true;
 
   # File systems configuration for using the installer's partition layout
   fileSystems = {
