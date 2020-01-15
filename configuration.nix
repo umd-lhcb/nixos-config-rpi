@@ -57,7 +57,7 @@
     alias nix-shell='nix-shell --run zsh'
     alias nix-reg='nix-instantiate shell.nix --indirect --add-root $HOME/.gcroots/$(basename $(pwd))'
     alias nix-sys-installed='nix-store --query --requisites /run/current-system | cut -d- -f2- | sort | uniq'
-    alias nix-sys-generations='nix-env --list-generations --profile /nix/var/nix/profiles/system'
+    alias nix-sys-generations='sudo nix-env --list-generations --profile /nix/var/nix/profiles/system'
   '';
 
   # Don't install NixOS manual
@@ -110,6 +110,10 @@
 
   # File systems configuration for using the installer's partition layout
   fileSystems = {
+    "/boot" = {
+      device = "/dev/disk/by-label/FIRMWARE";
+      fsType = "vfat";
+    };
     "/" = {
       device = "/dev/disk/by-label/NIXOS_SD";
       fsType = "ext4";
@@ -125,9 +129,9 @@
   # Hardware settings
   hardware.bluetooth.enable = false;
   hardware.enableRedistributableFirmware = false;
-  hardware.deviceTree = {
-    base = pkgs.device-tree_rpi;
-  };
+  #hardware.deviceTree = {
+  #  base = pkgs.device-tree_rpi;
+  #};
 
 
   ########################
