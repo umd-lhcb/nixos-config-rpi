@@ -31,6 +31,7 @@ let
     vim-airline
     delimitMate
     supertab
+    nerdcommenter
   ];
 in
 
