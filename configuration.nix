@@ -137,9 +137,9 @@
   # Hardware settings
   hardware.bluetooth.enable = false;
   hardware.enableRedistributableFirmware = false;
-  #hardware.deviceTree = {
-  #  base = pkgs.device-tree_rpi;
-  #};
+  hardware.deviceTree = {
+    base = pkgs.device-tree_rpi;
+  };
 
 
   ########################
