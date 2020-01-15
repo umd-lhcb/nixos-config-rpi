@@ -57,12 +57,13 @@
     alias nix-shell='nix-shell --run zsh'
     alias nix-reg='nix-instantiate shell.nix --indirect --add-root $HOME/.gcroots/$(basename $(pwd))'
     alias nix-sys-installed='nix-store --query --requisites /run/current-system | cut -d- -f2- | sort | uniq'
+    alias nix-sys-generations='nix-env --list-generations --profile /nix/var/nix/profiles/system'
   '';
 
   # Don't install NixOS manual
-  documentation.nixos.enable = false;
+  #documentation.nixos.enable = false;
 
-  systems.stateVersion = "20.03";
+  system.stateVersion = "20.03";
 
 
   #################################
