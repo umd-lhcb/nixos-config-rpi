@@ -59,6 +59,9 @@
     alias nix-sys-installed='nix-store --query --requisites /run/current-system | cut -d- -f2- | sort | uniq'
   '';
 
+  # Don't install NixOS manual
+  documentation.nixos.enable = false;
+
   systems.stateVersion = "20.03";
 
 
