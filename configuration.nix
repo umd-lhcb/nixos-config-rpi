@@ -6,8 +6,15 @@
   #####################
 
   nixpkgs.overlays = [
-    (import ./overlays/editors.nix)
-    (import ./overlays/burnin.nix)
+    (import ./overlays/editors)
+    (import ./overlays/burnin)
+  ];
+
+  nix.nixPath = [
+    "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs"
+    "nixpkgs-overlays=/etc/nixos/overlays"
+    "nixos-config=/etc/nixos/configuration.nix"
+    "/nix/var/nix/profiles/per-user/root/channels"
   ];
 
   imports = [
