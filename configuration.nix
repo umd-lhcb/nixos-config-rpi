@@ -7,6 +7,7 @@
 
   nixpkgs.overlays = [
     (import ./overlays/editors.nix)
+    (import ./overlays/burnin.nix)
   ];
 
   imports = [

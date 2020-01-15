@@ -1,4 +1,4 @@
-{ lib
+{ stdenv
 , buildPythonPackage
 , fetchPypi
 }
@@ -15,10 +15,4 @@ buildPythonPackage rec {
 
   # No check avaliable
   doCheck = false;
-
-  meta = {
-    homepage = "https://sourceforge.net/projects/raspberry-gpio-python/";
-    description = " A Python module to control the GPIO on a Raspberry Pi ";
-    license = lib.licenses.mit;
-  };
 }
