@@ -1,7 +1,7 @@
 { stdenv
 , buildPythonPackage
 , fetchPypi
-}
+}:
 
 buildPythonPackage rec {
   pname = "RPi.GPIO";
