@@ -43,6 +43,10 @@ in
 
   neovim-configured = super.neovim.override {
     configure = { inherit customRC; plug.plugins = plugins; };
+    withPython = false;
+    withPython3 = true;
+    withRuby = false;
+    withNodeJs = false;
     viAlias = true;
     vimAlias = true;
   };
