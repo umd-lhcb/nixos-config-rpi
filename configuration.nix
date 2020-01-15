@@ -10,9 +10,6 @@
   ];
 
   imports = [
-    # rpi 4 settings
-    <nixpkgs/nixos/modules/installer/cd-dvd/sd-image-raspberrypi4.nix>
-
     # Extra modules
     ./modules
 
@@ -62,15 +59,18 @@
     alias nix-sys-installed='nix-store --query --requisites /run/current-system | cut -d- -f2- | sort | uniq'
   '';
 
+  systems.stateVersion = "20.03";
+
 
   #################################
   # NixOS config for Raspberry Pi #
   #################################
 
   # NixOS wants to enable GRUB by default
-  boot.loader.grub.enable = false;
+  boot.loader.grub.enable = true;
+  boot.loader.grub.version = 2;
   # Enables the generation of /boot/extlinux/extlinux.conf
-  boot.loader.generic-extlinux-compatible.enable = true;
+  #boot.loader.generic-extlinux-compatible.enable = true;
 
   # Use latest main line kernel
   #boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -101,9 +101,9 @@
   ];
 
   # Other rpi tunings
-  boot.loader.raspberryPi.enable = true;
-  boot.loader.raspberryPi.version = 4;
-  boot.loader.raspberryPi.uboot.enable = true;
+  #boot.loader.raspberryPi.enable = true;
+  #boot.loader.raspberryPi.version = 4;
+  #boot.loader.raspberryPi.uboot.enable = true;
 
   # File systems configuration for using the installer's partition layout
   fileSystems = {
@@ -135,6 +135,7 @@
 
   networking.hostName = "LabPi";
   networking.wireless.enable = false;
+  networking.interfaces.eth0.useDHCP = true;
 
   time.timeZone = "America/New_York";
 
