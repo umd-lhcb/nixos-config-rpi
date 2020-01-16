@@ -121,6 +121,10 @@
     "console=tty0"
   ];
 
+  boot.extraModulePackages = with pkgs; [
+    linuxPackages_rpi4.w1-gpio-cl
+  ];
+
   # File systems configuration for using the installer's partition layout
   fileSystems = {
     "/boot" = {
