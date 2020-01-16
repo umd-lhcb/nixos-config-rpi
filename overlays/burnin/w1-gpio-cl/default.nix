@@ -14,7 +14,12 @@ stdenv.mkDerivation {
   nativeBuildInputs = kernel.moduleBuildDependencies;
 
   preBuild = ''
-    sed -e "s@/lib/modules/\$(.*)@${kernel.dev}/lib/modules/${kernel.modDirVersion}@" -i Makefile
+    sed -e "s@/lib/modules/\`.*\`@${kernel.dev}/lib/modules/${kernel.modDirVersion}@" -i Makefile
+    sed -e "s@gen-mast: w1-headers@gen-mast:@" -i Makefile
+    mkdir w1
+    ln -s ../w1_internal/w1_family.h w1/w1_family.h
+    ln -s ../w1_internal/w1_int.h w1/w1_int.h
+    ln -s ${kernel.dev}/lib/modules/${kernel.modDirVersion}/source/include/linux/w1.h w1/w1.h
   '';
 
   installPhase = ''
