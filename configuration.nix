@@ -48,6 +48,7 @@
     ripgrep
     cmake
     ctags
+    dtc  # Device tree compiler
 
     # Utilities
     tree
@@ -84,10 +85,16 @@
   # Enables the generation of /boot/extlinux/extlinux.conf
   #boot.loader.generic-extlinux-compatible.enable = true;
 
-  # Other rpi tunings for bootloader
-  boot.loader.raspberryPi.enable = true;
-  boot.loader.raspberryPi.version = 4;
-  #boot.loader.raspberryPi.uboot.enable = true;
+  # rpi foundation's bootloader settings
+  boot.loader.raspberryPi = {
+    enable = true;
+    version = 4;
+    #uboot.enable = true;
+
+    firmwareConfig = ''
+      dtoverlay=w1-gpio-pullup
+    '';
+  };
 
   # Use latest main line kernel
   #boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -114,7 +121,6 @@
     "console=ttyS0,115200n8"
     "console=ttyAMA0,115200n8"
     "console=tty0"
-    "dtoverlay=w1-gpio,pullup=1"  # For thermistors 1-wire setup
   ];
 
   # File systems configuration for using the installer's partition layout
@@ -137,9 +143,11 @@
 
   # Hardware settings
   hardware.bluetooth.enable = false;
-  hardware.enableRedistributableFirmware = false;
+  hardware.enableRedistributableFirmware = true;
   hardware.deviceTree = {
-    base = pkgs.device-tree_rpi;
+    overlays = [
+      "${pkgs.linuxPackages_rpi4.kernel}/dtbs/overlays/w1-gpio-pullup.dtbo"
+    ];
   };
 
 

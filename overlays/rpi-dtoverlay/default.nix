@@ -1,5 +1,5 @@
 self: super:
 
 {
-  device-tree = super.callPackage ./device-tree { };
+  deviceTree = super.callPackage ./device-tree { };
 }
