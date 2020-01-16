@@ -8,7 +8,7 @@ let
   };
 
   kernelModuleOverrides = self: super: {
-     w1-gpio-cl = lpself.callPackage ./w1-gpio-cl {};
+     w1-gpio-cl = self.callPackage ./w1-gpio-cl {};
   };
 in
 
@@ -18,7 +18,7 @@ in
   # Out-of-tree kernel modules
   linuxPackages_rpi4 = super.linuxPackages_rpi4.extend(
     kernelModuleOverrides
-  });
+  );
 
   # udev rules
   usb-relay-udev-rules = super.callPackage ./usb-relay-udev-rules {};
