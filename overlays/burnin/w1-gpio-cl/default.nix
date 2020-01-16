@@ -6,7 +6,7 @@ stdenv.mkDerivation {
   src = fetchgit {
     url = "git://github.com/pstolarz/w1-gpio-cl.git";
     rev = "8681afc7d9f764ed16d2182f2a3b3daac4a2e309";
-    sha256: "15nsx8nyxr96p06xaizn7ixy5ak5wc2z5ywk5ylys2adwhrlh61n";
+    sha256 = "15nsx8nyxr96p06xaizn7ixy5ak5wc2z5ywk5ylys2adwhrlh61n";
   };
 
   hardeningDisable = [ "pic" ];
