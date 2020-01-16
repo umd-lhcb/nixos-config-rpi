@@ -8,7 +8,6 @@
   nixpkgs.overlays = [
     (import ./overlays/editors)
     (import ./overlays/burnin)
-    (import ./overlays/rpi-dtoverlay)
   ];
 
   nix.nixPath = [
@@ -143,7 +142,7 @@
   hardware.bluetooth.enable = false;
   hardware.enableRedistributableFirmware = true;
   # FIXME: dtc would complain about syntax error. Don't know why.
-  #        This should mature in the near term future.
+  #        This should mature in the near future.
   #hardware.deviceTree = {
     #overlays = [
       #"${pkgs.linuxPackages_rpi4.kernel}/dtbs/overlays/w1-gpio-pullup.dtbo"
