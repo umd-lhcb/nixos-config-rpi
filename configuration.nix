@@ -48,7 +48,6 @@
     ripgrep
     cmake
     ctags
-    dtc  # Device tree compiler
 
     # Utilities
     tree
