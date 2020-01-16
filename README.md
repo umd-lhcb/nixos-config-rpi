@@ -32,7 +32,9 @@ sudo mount /dev/mmcblk0p1 /mnt
 
 Then clone the `rpi4` NixOS configuration:
 ```
-cd /mnt/etc/nixos
+cd /mnt  # Choose the correct mount path if differs
+mkdir -p etc/nixos
+cd /etc/nixos
 git init .
 git remote add origin https://github.com/umd-lhcb/nixos-config-rpi
 git fetch origin
