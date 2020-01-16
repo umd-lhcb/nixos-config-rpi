@@ -7,7 +7,7 @@
 
   nixpkgs.overlays = [
     (import ./overlays/editors)
-    (import ./overlays/burnin)
+    #(import ./overlays/burnin)
   ];
 
   nix.nixPath = [
@@ -47,6 +47,7 @@
     ripgrep
     cmake
     ctags
+    nix-prefetch-scripts
 
     # Utilities
     tree
