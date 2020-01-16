@@ -8,6 +8,7 @@
   nixpkgs.overlays = [
     (import ./overlays/editors)
     (import ./overlays/burnin)
+    (import ./overlays/rpi-dtoverlay)
   ];
 
   nix.nixPath = [
@@ -90,9 +91,9 @@
     version = 4;
     #uboot.enable = true;
 
-    #firmwareConfig = ''
-      #dtoverlay=w1-gpio-pullup
-    #'';
+    firmwareConfig = ''
+      dtoverlay=w1-gpio-pullup
+    '';
   };
 
   # Use latest main line kernel
@@ -121,9 +122,9 @@
     "console=tty0"
   ];
 
-  boot.extraModulePackages = with pkgs; [
-    linuxPackages_rpi4.w1-gpio-cl
-  ];
+  #boot.extraModulePackages = with pkgs; [
+    #linuxPackages_rpi4.w1-gpio-cl
+  #];
 
   # File systems configuration for using the installer's partition layout
   fileSystems = {
@@ -146,13 +147,11 @@
   # Hardware settings
   hardware.bluetooth.enable = false;
   hardware.enableRedistributableFirmware = true;
-  # FIXME: dtc would complain about syntax error. Don't know why.
-  #        This should mature in the near future.
-  #hardware.deviceTree = {
-    #overlays = [
-      #"${pkgs.linuxPackages_rpi4.kernel}/dtbs/overlays/w1-gpio-pullup.dtbo"
-    #];
-  #};
+  hardware.deviceTree = {
+    overlays = [{
+      overlay = "${pkgs.linuxPackages_rpi4.kernel}/dtbs/overlays/w1-gpio-pullup.dtbo";
+    }];
+  };
 
   # udev rules for burn-in software debugging
   services.udev.packages = with pkgs; [
