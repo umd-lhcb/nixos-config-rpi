@@ -148,7 +148,7 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
 
-  networking.hostName = "LabPi";
+  networking.hostName = "LabPi4";
   networking.wireless.enable = false;
   networking.interfaces.eth0.useDHCP = true;
 
