@@ -150,6 +150,11 @@
     #];
   #};
 
+  # udev rules for burn-in software debugging
+  services.udev.packages = with pkgs; [
+    usb-relay-udev-rules
+  ];
+
 
   ########################
   # Host-specific config #
