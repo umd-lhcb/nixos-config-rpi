@@ -91,9 +91,9 @@
     version = 4;
     #uboot.enable = true;
 
-    firmwareConfig = ''
-      dtoverlay=w1-gpio-pullup
-    '';
+    #firmwareConfig = ''
+      #dtoverlay=w1-gpio-pullup
+    #'';
   };
 
   # Use latest main line kernel
@@ -101,7 +101,6 @@
   # Use latest lts kernel
   #boot.kernelPackages = pkgs.linuxPackages;
   # Use Linux kernel for rpi4
-  # FIXME: This doesn't work
   boot.kernelPackages = pkgs.linuxPackages_rpi4;
 
   boot.initrd.availableKernelModules = [
@@ -144,11 +143,13 @@
   # Hardware settings
   hardware.bluetooth.enable = false;
   hardware.enableRedistributableFirmware = true;
-  hardware.deviceTree = {
-    overlays = [
-      "${pkgs.linuxPackages_rpi4.kernel}/dtbs/overlays/w1-gpio-pullup.dtbo"
-    ];
-  };
+  # FIXME: dtc would complain about syntax error. Don't know why.
+  #        This should mature in the near term future.
+  #hardware.deviceTree = {
+    #overlays = [
+      #"${pkgs.linuxPackages_rpi4.kernel}/dtbs/overlays/w1-gpio-pullup.dtbo"
+    #];
+  #};
 
 
   ########################
