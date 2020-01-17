@@ -5,8 +5,8 @@ let
   #kernel = pkgs.linuxPackages_latest;
   # Use latest lts kernel
   #kernel = pkgs.linuxPackages;
-  # Use Linux kernel for rpi4
-  kernel = pkgs.linuxPackages_rpi4;
+  # Use Linux kernel for rpi3
+  kernel = pkgs.linuxPackages_rpi3;
 in
 
 {
@@ -97,7 +97,7 @@ in
   # rpi foundation's bootloader settings
   boot.loader.raspberryPi = {
     enable = true;
-    version = 4;
+    version = 3;
     #uboot.enable = true;
 
     firmwareConfig = ''
@@ -120,7 +120,7 @@ in
   # you should either disable this parameter or increase to at least 64M if you
   # want the USB ports to work.
   boot.kernelParams = [
-    "cma=64M"  # rpi4 default
+    "cma=32M"  # for rpi3
     "console=ttyS0,115200n8"
     "console=ttyAMA0,115200n8"
     "console=tty0"
@@ -169,7 +169,7 @@ in
 
   i18n.defaultLocale = "en_US.UTF-8";
 
-  networking.hostName = "LabPi4";
+  networking.hostName = "LabPi3";
   networking.wireless.enable = false;
   networking.interfaces.eth0.useDHCP = true;
 
