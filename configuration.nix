@@ -153,7 +153,7 @@ in
   hardware.enableRedistributableFirmware = true;
   hardware.deviceTree = {
     overlays = [{
-      overlay = "${kernel}/dtbs/overlays/w1-gpio-pullup.dtbo";
+      overlay = "${kernel.kernel}/dtbs/overlays/w1-gpio-pullup.dtbo";
     }];
   };
 
