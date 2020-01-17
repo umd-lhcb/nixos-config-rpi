@@ -3,7 +3,8 @@ self: super:
 let
   pythonOverrides = {
     packageOverrides = self: super: {
-      RPi.GPIO = super.callPackage ./RPi.GPIO {};
+      RPi_GPIO = super.callPackage ./RPi.GPIO {};
+      rpi_burnin = super.callPackage ./rpi.burnin {};
     };
   };
 
