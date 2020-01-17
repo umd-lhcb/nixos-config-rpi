@@ -1,6 +1,6 @@
 # nixos-config-rpi
-NixOS configuration for Raspberry Pi used in burn-in. Note that this branch
-works for both rpi3 and rpi4.
+NixOS configuration for Raspberry Pi used in burn-in. This branch works for rpi
+4 only.
 
 
 ## Installation
