@@ -61,13 +61,18 @@ Then switch to root user:
 su
 ```
 
+We need to manually mount the boot partition first:
+```
+sudo mount /dev/mmcblk0p1 /boot
+```
+
 Now we reconfigure the system with our settings:
 ```
 sudo nixos-rebuild switch
 ```
 
 There might be some warnings and errors at this step. Ignore them. Reboot.
-Now the user `lhcb` with `sudo` permission will be created.
+The user `lhcb` with `sudo` permission will be created in the process.
 
 Now we add the official `unstable` channel:
 ```
