@@ -1,11 +1,13 @@
 # nixos-config-rpi
-NixOS configuration for Raspberry Pi used in burn-in.
+NixOS configuration for Raspberry Pi used in burn-in. Note that this branch
+works for both rpi3 and rpi4.
 
 
 ## Installation
-Download the latest `NixOS` `aarch64` release from [1] (official, but
-experimental). Note that this is officially termed as 'unstable', but should be
-sufficient in our case. This branch can be used as a rolling release.
+Download the latest `NixOS` `aarch64` release from [1] (Yipeng's approved
+images, preferred) or [2] (official, but experimental). Note that this is
+officially termed as 'unstable', but should be sufficient in our case. This
+branch can be used as a rolling release.
 
 > This image relying on the raspberry pi foundation's kernel, and the raspberry
 > pi foundation's boot chain, rather than our preferred u-boot based images using
@@ -44,7 +46,8 @@ git checkout rpi4
 Then `umount` the SD card partition.
 
 
-[1]: https://hydra.nixos.org/job/nixos/trunk-combined/nixos.sd_image_raspberrypi4.aarch64-linux
+[1]: https://www.dropbox.com/sh/yv00t2s725d728m/AADO1UNMUBdh_5uRzaX73Z7ga?dl=0
+[2]: https://hydra.nixos.org/job/nixos/trunk-combined/nixos.sd_image_raspberrypi4.aarch64-linux
 
 
 ## System configuration
