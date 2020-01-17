@@ -1,5 +1,14 @@
 { config, pkgs, lib, ... }:
 
+let
+  # Use latest main line kernel
+  #kernel = pkgs.linuxPackages_latest;
+  # Use latest lts kernel
+  #kernel = pkgs.linuxPackages;
+  # Use Linux kernel for rpi4
+  kernel = pkgs.linuxPackages_rpi4;
+in
+
 {
   #####################
   # nix global config #
@@ -96,12 +105,7 @@
     '';
   };
 
-  # Use latest main line kernel
-  #boot.kernelPackages = pkgs.linuxPackages_latest;
-  # Use latest lts kernel
-  #boot.kernelPackages = pkgs.linuxPackages;
-  # Use Linux kernel for rpi4
-  boot.kernelPackages = pkgs.linuxPackages_rpi4;
+  boot.kernelPackages = kernel;
 
   boot.initrd.availableKernelModules = [
     "usbhid"
@@ -149,7 +153,7 @@
   hardware.enableRedistributableFirmware = true;
   hardware.deviceTree = {
     overlays = [{
-      overlay = "${pkgs.linuxPackages_rpi4.kernel}/dtbs/overlays/w1-gpio-pullup.dtbo";
+      overlay = "${kernel}/dtbs/overlays/w1-gpio-pullup.dtbo";
     }];
   };
 
