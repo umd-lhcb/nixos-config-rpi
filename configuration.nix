@@ -172,6 +172,7 @@ in
   networking.hostName = "LabPi3";
   networking.wireless.enable = false;
   networking.interfaces.eth0.useDHCP = true;
+  networking.firewall.enable = false;
 
   time.timeZone = "America/New_York";
 

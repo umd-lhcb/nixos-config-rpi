@@ -5,9 +5,9 @@ buildPythonPackage rec {
   version = "0.3";
 
   src = fetchgit {
-    url = "https://github.com/umd-lhcb/rpi.burnin";
+    url = "https://github.com/umd-lhcb/${pname}";
     rev = version;
-    sha256 = "1q5f2520i8kiqwpxxy2ajb7iz98v6bvvi6nilw9zd0bxbmsfkcva";
+    sha256 = "13zbrhg1qwmn2q4w0spphvaan4bqfh1g6iq0dmsilnr6g601m7jd";
   };
 
   propagatedBuildInputs = [
