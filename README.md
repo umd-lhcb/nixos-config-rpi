@@ -36,7 +36,7 @@ Then clone the `rpi4` NixOS configuration:
 ```
 cd /mnt  # Choose the correct mount path if differs
 mkdir -p etc/nixos
-cd /etc/nixos
+cd etc/nixos
 git init .
 git remote add origin https://github.com/umd-lhcb/nixos-config-rpi
 git fetch origin
@@ -51,10 +51,13 @@ Then `umount` the SD card partition.
 
 
 ## System configuration
-On first boot, set the password of root with:
+Plug the SD card into the rpi 4. Also attach monitor, keyboard, and internet. Since the rpis are not registered, the internet needs to be shared from another computer.
+
+On first boot of the rpi, set the password of root with:
 ```
 sudo passwd root
 ```
+This password will then be overwritten by the configuration.
 
 Then switch to root user:
 ```
@@ -72,7 +75,7 @@ sudo nixos-rebuild switch
 ```
 
 There might be some warnings and errors at this step. Ignore them. Reboot.
-The user `lhcb` with `sudo` permission will be created in the process.
+The user `lhcb` with `sudo` permission will be created in the process. Ask Yipeng/Manuel/Zishuo for the password.
 
 Now we add the official `unstable` channel:
 ```
