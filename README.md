@@ -12,11 +12,11 @@ git fetch origin
 git checkout rpi3
 ```
 
-Before proceed, remove all files in the `/boot` partition with `rm -rf`. This
+Before proceed, remove all files in the `/boot` partition with `rm -rf /boot/*`. This
 is because the `/boot` partition is too small and can't fit the pending rpi3
 kernel.
 
-Now rebuild the system with rpi4---this takes ~3 hrs, because rpi3 kernel needs
+Now rebuild the system with the rpi4. This takes ~3 hrs, because the rpi3 kernel needs
 manual compilation:
 ```
 nixos-rebuild switch
