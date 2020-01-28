@@ -24,4 +24,5 @@ in
 
   # udev rules
   usb-relay-udev-rules = super.callPackage ./usb-relay-udev-rules {};
+  gpiomem-udev-rules = super.callPackage ./gpiomem-udev-rules {};
 }
