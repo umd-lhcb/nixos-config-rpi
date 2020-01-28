@@ -11,7 +11,7 @@ buildPythonPackage rec {
     sha256 = "a504c20f1e074cc7f5a5b986c08eb6fb495c9153cffb36b5fa0a587de3a8db63";
   };
 
-  buildInputs = [
+  propagatedBuildInputs = [
     colorama
     logutils
   ];
