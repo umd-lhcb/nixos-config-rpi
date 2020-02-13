@@ -27,7 +27,8 @@ sudo dd if=<nixos.img> of=/dev/mmcblk0
 > On first boot, the rootfs will be automatically resized to use all available
 > spaces of the SD card.
 
-After the `dd` command is completed, mount the `/dev/mmcblk0p2` to `/mnt`:
+After the `dd` command is completed, mount the `/dev/mmcblk0p1` (the latter of
+the two partitions) to `/mnt`:
 ```
 sudo mount /dev/mmcblk0p1 /mnt
 ```
