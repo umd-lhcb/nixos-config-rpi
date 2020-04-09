@@ -80,7 +80,7 @@ The user `lhcb` with `sudo` permission will be created in the process. Ask Yipen
 
 Now we add the official `unstable` channel:
 ```
-sudo nix-channel --add --add https://nixos.org/channels/nixos-unstable nixos
+sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
 ```
 
 We can update the system with:
