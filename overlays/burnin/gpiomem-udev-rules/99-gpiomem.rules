@@ -1,2 +1,0 @@
-SUBSYSTEM=="bcm2835-gpiomem", KERNEL=="gpiomem", GROUP="gpio", MODE="0660"
-SUBSYSTEM=="gpio", GROUP="gpio", MODE="0660"
