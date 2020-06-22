@@ -13,6 +13,9 @@ in
   linuxPackages_rpi3 = super.linuxPackages_rpi3.extend(
     kernelModuleOverrides
   );
+  linuxPackages_rpi4 = super.linuxPackages_rpi4.extend(
+    kernelModuleOverrides
+  );
 
   # udev rules
   usb-relay-udev-rules = super.callPackage ./usb-relay-udev-rules {};
