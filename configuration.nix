@@ -15,6 +15,7 @@ in
   #####################
 
   nixpkgs.overlays = [
+    (import ./overlays/burnin)
     (import ./overlays/editors)
     (import ./overlays/rpi-dtoverlay)
   ];
