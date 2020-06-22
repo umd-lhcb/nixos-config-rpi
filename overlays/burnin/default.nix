@@ -7,8 +7,6 @@ let
 in
 
 {
-  python3 = super.python3.override pythonOverrides;
-
   # Out-of-tree kernel modules
   linuxPackages_rpi3 = super.linuxPackages_rpi3.extend(
     kernelModuleOverrides
