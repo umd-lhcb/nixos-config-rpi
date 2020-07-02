@@ -172,6 +172,7 @@ in
 
   networking.hostName = "LabPi3";
   networking.wireless.enable = false;
+  networking.interfaces.eth0.macAddress = "b8:27:eb:27:8d:1d";  # Always masquerade as the known pi to IT.
   networking.interfaces.eth0.useDHCP = true;
   networking.firewall.enable = false;
 
